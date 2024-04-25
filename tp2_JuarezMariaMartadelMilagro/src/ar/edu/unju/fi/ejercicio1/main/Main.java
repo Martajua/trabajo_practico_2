@@ -36,6 +36,7 @@ public class Main {
 				System.out.print("Ingrese opcion: ");
 				opcion = leer.nextByte();
 				if (opcion < 1 || opcion > 4) {
+					opcion = 0;
 					throw new IllegalArgumentException("Opcion invalida, debe elegir una opcion del 1 al 4");
 				}
 			} catch (Exception e) {
@@ -158,8 +159,7 @@ public class Main {
 			default:
 				break;
 			}
-			opcion = 0;
-		} while (opcion == 0);
+		} while (opcion != 4);
 		leer.close();
 	}
 }
