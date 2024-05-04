@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.ejercicio5.main;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,22 +26,36 @@ public class Main {
 		Producto producto = new Producto();
 
 		// precarga de productos
-		listaProductos.add(new Producto("ABC123", "", 23.4, OrigenFabricacion.CHINA, Categoria.ELECTROHOGAR, false));
-		listaProductos.add(new Producto("ABC124", "", 30.5, OrigenFabricacion.CHINA, Categoria.INFORMATICA, true));
-		listaProductos.add(new Producto("ABC125", "", 100.5, OrigenFabricacion.BRASIL, Categoria.TELEFONIA, true));
-		listaProductos.add(new Producto("ABC126", "", 300.3, OrigenFabricacion.BRASIL, Categoria.ELECTROHOGAR, false));
-		listaProductos.add(new Producto("ABC127", "", 900.0, OrigenFabricacion.CHINA, Categoria.ELECTROHOGAR, true));
+		listaProductos.add(
+				new Producto("ABC123", "Heladera", 2300.4, OrigenFabricacion.CHINA, Categoria.ELECTROHOGAR, false));
 		listaProductos
-				.add(new Producto("DEF456", "", 1200.3, OrigenFabricacion.ARGENTINA, Categoria.HERRAMIENTAS, true));
-		listaProductos.add(new Producto("DEF457", "", 899.7, OrigenFabricacion.URUGUAY, Categoria.HERRAMIENTAS, true));
-		listaProductos.add(new Producto("DEF458", "", 1500.9, OrigenFabricacion.URUGUAY, Categoria.TELEFONIA, true));
-		listaProductos.add(new Producto("DEF459", "", 400.0, OrigenFabricacion.ARGENTINA, Categoria.TELEFONIA, false));
-		listaProductos.add(new Producto("DEF460", "", 275.2, OrigenFabricacion.ARGENTINA, Categoria.INFORMATICA, true));
-		listaProductos.add(new Producto("GHI789", "", 950.5, OrigenFabricacion.BRASIL, Categoria.INFORMATICA, true));
-		listaProductos.add(new Producto("GHI790", "", 645.7, OrigenFabricacion.CHINA, Categoria.HERRAMIENTAS, true));
-		listaProductos.add(new Producto("GHI791", "", 308.6, OrigenFabricacion.BRASIL, Categoria.HERRAMIENTAS, true));
-		listaProductos.add(new Producto("GHI792", "", 349.7, OrigenFabricacion.BRASIL, Categoria.INFORMATICA, false));
-		listaProductos.add(new Producto("GHI793", "", 241.3, OrigenFabricacion.URUGUAY, Categoria.ELECTROHOGAR, false));
+				.add(new Producto("ABC124", "Netbook", 30.5, OrigenFabricacion.CHINA, Categoria.INFORMATICA, true));
+		listaProductos.add(
+				new Producto("ABC125", "Celular Samsung", 100.5, OrigenFabricacion.BRASIL, Categoria.TELEFONIA, true));
+		listaProductos.add(
+				new Producto("ABC126", "Microondas", 300.3, OrigenFabricacion.BRASIL, Categoria.ELECTROHOGAR, false));
+		listaProductos.add(
+				new Producto("ABC127", "Ventilador", 900.0, OrigenFabricacion.CHINA, Categoria.ELECTROHOGAR, true));
+		listaProductos.add(new Producto("DEF456", "Desmalezadora", 1200.3, OrigenFabricacion.ARGENTINA,
+				Categoria.HERRAMIENTAS, true));
+		listaProductos.add(
+				new Producto("DEF457", "Linterna", 899.7, OrigenFabricacion.URUGUAY, Categoria.HERRAMIENTAS, true));
+		listaProductos.add(
+				new Producto("DEF458", "Celular TCL", 1500.9, OrigenFabricacion.URUGUAY, Categoria.TELEFONIA, true));
+		listaProductos.add(
+				new Producto("DEF459", "Celular Moto", 400.0, OrigenFabricacion.ARGENTINA, Categoria.TELEFONIA, false));
+		listaProductos.add(
+				new Producto("DEF460", "Monitor", 275.2, OrigenFabricacion.ARGENTINA, Categoria.INFORMATICA, true));
+		listaProductos.add(
+				new Producto("GHI789", "Placa de video", 950.5, OrigenFabricacion.BRASIL, Categoria.INFORMATICA, true));
+		listaProductos.add(new Producto("GHI790", "Sierra Electrica", 645.7, OrigenFabricacion.CHINA,
+				Categoria.HERRAMIENTAS, true));
+		listaProductos
+				.add(new Producto("GHI791", "Taladro", 308.6, OrigenFabricacion.BRASIL, Categoria.HERRAMIENTAS, true));
+		listaProductos.add(
+				new Producto("GHI792", "Memoria RAM", 349.7, OrigenFabricacion.BRASIL, Categoria.INFORMATICA, false));
+		listaProductos.add(new Producto("GHI793", "Aire Acondicionado", 241.3, OrigenFabricacion.URUGUAY,
+				Categoria.ELECTROHOGAR, false));
 
 		do {
 			System.out.println("");
@@ -126,14 +139,12 @@ public class Main {
 					switch (opcion) {
 					case 1:// pago efectivo
 						PagoEfectivo pagoEfectivo = new PagoEfectivo();
-						pagoEfectivo.setFechaPago(LocalDate.now());
 						pagoEfectivo.setMontoPagado(montoTotal);
 						pagoEfectivo.imprimirRecibo();
 						break;
 					case 2:// pago tarjeta
 						PagoTarjeta pagoTarjeta = new PagoTarjeta();
 						pagoTarjeta.setNumeroTarjeta(4021123454786010l);
-						pagoTarjeta.setFechaPago(LocalDate.now());
 						pagoTarjeta.setMontoPagado(montoTotal);
 						pagoTarjeta.imprimirRecibo();
 						break;

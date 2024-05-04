@@ -1,6 +1,8 @@
 package ar.edu.unju.fi.ejercicio5.model;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 import ar.edu.unju.fi.ejercicio5.interfaces.IPago;
 
@@ -37,18 +39,23 @@ public class PagoEfectivo implements IPago {
 
 	@Override
 	public double realizarPago(double monto) {
-		return montoPagado-=(montoPagado*10)/100;
+		return montoPagado -= (montoPagado * 10) / 100;
 	}
 
 	@Override
 	public void imprimirRecibo() {
 		montoPagado = realizarPago(montoPagado);
 
-		double montoRedondeado = Math.round(montoPagado*100.0)/100.0;
+		double montoRedondeado = Math.round(montoPagado * 100.0) / 100.0;
 		String montoFormateado = String.format("%.2f", montoRedondeado);
-		
-		System.out.println("Fecha de pago: "+fechaPago);
-		System.out.println("Monto pagado: "+montoFormateado);
+
+		 Date fecha = new Date();
+		 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	  
+	     String fechaFormateada = formato.format(fecha);
+	     
+		System.out.println("Fecha de pago: " + fechaFormateada);
+		System.out.println("Monto pagado: " + montoFormateado);
 	}
 
 }
