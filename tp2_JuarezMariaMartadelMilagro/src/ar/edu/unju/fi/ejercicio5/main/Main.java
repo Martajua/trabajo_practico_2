@@ -24,6 +24,8 @@ public class Main {
 		List<Producto> listaProductos = new ArrayList<>();
 		List<Producto> listaCompra = new ArrayList<>();
 
+		Producto producto = new Producto();
+
 		// precarga de productos
 		listaProductos.add(new Producto("ABC123", "", 23.4, OrigenFabricacion.CHINA, Categoria.ELECTROHOGAR, false));
 		listaProductos.add(new Producto("ABC124", "", 30.5, OrigenFabricacion.CHINA, Categoria.INFORMATICA, true));
@@ -43,44 +45,83 @@ public class Main {
 		listaProductos.add(new Producto("GHI793", "", 241.3, OrigenFabricacion.URUGUAY, Categoria.ELECTROHOGAR, false));
 
 		do {
-
+			System.out.println("");
 			System.out.println("***Compras***");
 			System.out.println("1-Mostrar productos");
 			System.out.println("2-Realizar compra");
 			System.out.println("3-Salir");
-			System.out.print("Elija una opcion: ");
-			opcion = leer.nextByte();
+			try {// control de opciones menu principal
+				System.out.print("Elija una opcion: ");
+				opcion = leer.nextByte();
+				if (opcion < 1 || opcion > 3) {
+					opcion = 0;
+					throw new IllegalArgumentException("Opcion invalida, debe elegir una opcion del 1 al 3");
+				}
+			} catch (Exception e) {
+				System.out.println("Error: " + e.getMessage());
+				leer.nextLine();
+				opcion = 0;
+			}
 			switch (opcion) {
 			case 1:// mostrar productos
-				for (Producto producto : listaProductos) {
-					if (producto.isEstado() == true) {
-						System.out.println(producto);
+				for (Producto prod : listaProductos) {
+					if (prod.isEstado() == true) {
+						System.out.println(prod);
 					}
 				}
 				break;
 			case 2:// realizar compra
 				do {
-					System.out.print("Ingrese codigo del producto: ");
-					codigoProducto = leer.next();
-					for (Producto producto : listaProductos) {
-						if (codigoProducto.equals(producto.getCodigo())) {
-							listaCompra.add(producto); // agrego el producto a la lista de compras
-							montoTotal += producto.getPrecioUnitario();
+					try {// control de ingreso de codigo
+						System.out.print("Ingrese codigo del producto: ");
+						codigoProducto = leer.next();
+						for (int i = 0; i < listaProductos.size(); i++) {
+							producto = listaProductos.get(i);
+							if (producto.getCodigo().equals(codigoProducto)) {
+								listaCompra.add(producto); // agrego el producto a la lista de compras
+								montoTotal += producto.getPrecioUnitario();
+							}
 						}
+					} catch (Exception e) {
+						System.out.println("Error: " + e.getMessage());
+						codigoProducto = "";
+						leer.nextLine();
 					}
-					System.out.print("Desea cargar otro producto(S/N):  ");
-					respuesta = leer.next();
-					if (respuesta.equalsIgnoreCase("S")) {
-						carga = true;
-					} else {
-						carga = false;
+					try {
+						do {
+							System.out.print("Desea cargar otro producto(S/N):  ");
+							respuesta = leer.next();
+							if (respuesta.equalsIgnoreCase("S")) {
+								carga = true;
+							} else if (respuesta.equalsIgnoreCase("N")) {
+								carga = false;
+							} else {
+								System.out.println("Respuesta no válida. Por favor, ingrese S o N.");
+							}
+						} while (!respuesta.equalsIgnoreCase("S") && !respuesta.equalsIgnoreCase("N"));
+					} catch (Exception e) {
+						System.out.println("Error: " + e.getMessage());
+						respuesta = "";
+						leer.nextLine();
 					}
 				} while (carga == true);
 				System.out.println("***Opciones de pago***");
 				System.out.println("1-Pago efectivo");
 				System.out.println("2-Pago con tarjeta");
-				System.out.print("Ingrese opción: ");
-				opcion = leer.nextByte();
+				do {
+					try {
+						System.out.print("Ingrese opción: ");
+						opcion = leer.nextByte();
+						if (opcion < 1 || opcion > 2) {
+							opcion = 0;
+							throw new IllegalArgumentException("Opcion invalida, debe elegir una opcion del 1 al 2");
+						}
+					} catch (Exception e) {
+						System.out.println("Error: " + e.getMessage());
+						leer.nextLine();
+						opcion = 0;
+					}
+				} while (opcion == 0);
 				do {
 					switch (opcion) {
 					case 1:// pago efectivo
