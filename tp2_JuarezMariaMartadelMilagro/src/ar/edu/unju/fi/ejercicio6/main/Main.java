@@ -27,8 +27,8 @@ public class Main {
 					j.getEdad());
 			FelinoDomestico gato1 = converter1.convert(felino);
 			converter1.mostrarObjeto(gato1);
+		}else {
+			System.out.println("El objeto es nulo");
 		}
-
 	}
-
 }
